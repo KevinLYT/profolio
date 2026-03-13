@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template · Split Hero</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+      background: #0c0d10;
+      color: #f9fafb;
+    }
+
+    .frame {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+    }
+
+    aside {
+      padding: 60px 48px;
+      background: #111317;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    aside h1 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+    }
+
+    aside p {
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 1rem;
+    }
+
+    aside .links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .links a {
+      color: #f9fafb;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    main {
+      padding: 70px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      background: radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.35), transparent 45%),
+                  radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.35), transparent 40%),
+                  #05060a;
+    }
+
+    .panel {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(8px);
+    }
+
+    .panel h2 {
+      margin: 0 0 12px;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+    }
+
+    .panel strong {
+      font-size: 1.1rem;
+    }
+
+    .panel p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .list {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .frame { grid-template-columns: 1fr; }
+      aside { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+      main { padding: 50px 24px 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <aside>
+      <div>
+        <p>template</p>
+        <h1>Your Name</h1>
+        <p>Concise mission statement / elevator pitch placeholder. Two sentences max.</p>
+      </div>
+      <div class="links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Resume</a>
+        <a href="#">GitHub</a>
+      </div>
+    </aside>
+
+    <main>
+      <section class="panel">
+        <h2>Current Focus</h2>
+        <div class="list">
+          <div>
+            <strong>Headline Item</strong>
+            <p>Brief description about what you're doing right now.</p>
+          </div>
+          <div>
+            <strong>Secondary Focus</strong>
+            <p>Placeholder text for a second highlight.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Selected Work</h2>
+        <div class="list">
+          <div>
+            <strong>Project Title</strong>
+            <p>One-liner summary for this project.</p>
+          </div>
+          <div>
+            <strong>Project Title</strong>
+            <p>One-liner summary for this project.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Timeline</h2>
+        <div class="list">
+          <div>
+            <strong>Role @ Company</strong>
+            <p>2024 — present</p>
+          </div>
+          <div>
+            <strong>Role @ Company</strong>
+            <p>2022 — 2024</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

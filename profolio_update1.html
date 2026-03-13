@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YiTan (Kevin) Li - Software Engineer</title>
+    <style>
+        :root {
+            --bg: #f7f7f9;
+            --card: #ffffff;
+            --text: #111111;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --accent: #0f172a;
+            --accent-soft: #1d4ed8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'SF Pro Display', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn.active,
+        .nav-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+        }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        .header {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 36px;
+            margin-bottom: 32px;
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.08);
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 24px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d9dce3;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+        }
+
+        .contact-item {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            padding: 34px;
+            margin-bottom: 28px;
+            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.07);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 32px 90px rgba(15, 23, 42, 0.12);
+        }
+
+        .section h2 {
+            font-size: 1.55rem;
+            margin-bottom: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 32px;
+            background: var(--accent);
+            opacity: 0.2;
+        }
+
+        .education-item,
+        .experience-item,
+        .project-item {
+            background: #fdfdfd;
+            border: 1px solid #f1f1f3;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 18px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .education-item:hover,
+        .experience-item:hover,
+        .project-item:hover {
+            transform: translateY(-4px);
+            border-color: #d7dae0;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .degree,
+        .job-title,
+        .project-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .school,
+        .company,
+        .project-link,
+        .location,
+        .duration {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .skill-category {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 20px;
+            background: #fcfcfc;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+        }
+
+        .skill-category h3 {
+            font-size: 1rem;
+            margin-bottom: 14px;
+            color: var(--accent);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #f2f4f7;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .experience-header,
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 14px;
+        }
+
+        .achievements li {
+            padding-left: 18px;
+            position: relative;
+            margin-bottom: 10px;
+            color: #4b5563;
+        }
+
+        .achievements li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 12px 28px;
+            border-radius: 999px;
+            border: 1px solid var(--accent);
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .contact-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.18);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 860px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+            }
+
+            .experience-header,
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header,
+        .section {
+            animation: fadeUp 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <button class="nav-btn active" onclick="showPage('home')">Home</button>
+            <button class="nav-btn" onclick="showPage('experience')">Experience & Projects</button>
+        </div>
+
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="header">
+                <div class="profile-photo">
+                    <img src="kevin.jpg" alt="Portrait of YiTan (Kevin) Li" />
+                </div>
+                <div class="hero-text">
+                    <h1>YiTan (Kevin) Li</h1>
+                    <p class="subtitle">Computer Science · NYU Courant MSCS · Blockchain Enthusiast</p>
+                    <div class="contact-info">
+                        <div class="contact-item">📞 +1 (929) 650-8873</div>
+                        <div class="contact-item">📧 yl9314@nyu.edu</div>
+                        <div class="contact-item">🌍 Jersey City, USA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>About Me</h2>
+                <p>Passionate software engineer with expertise in blockchain, full-stack development, data analyst and financetech. Currently pursuing my Master's degree in Computer Science at NYU Courant Institute, with a strong foundation in algorithms, machine learning, and cryptography. I have hands-on experience in financial technology and database management, along with a proven track record in developing innovative projects including decentralized applications and interactive educational tools.</p>
+            </div>
+
+            <div class="section">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <div class="degree">Master of Science in Computer Science</div>
+                    <div class="school">New York University - Courant Institute</div>
+                    <div class="year">September 2025 - Present</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">Bachelor of Science in Computer Science</div>
+                    <div class="school">New York University Shanghai (NYU Shanghai)</div>
+                    <div class="year">August 2021 - May 2025</div>
+                    <div class="gpa">GPA: 3.72/4.0</div>
+                    <div class="awards">🏆 Dean's List Academic Year 2022-2023, LEGO Game Jam Outstanding Design Award 2023</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Technical Skills</h2>
+                <div class="skills">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">C/C++</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frameworks & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">Solidity</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Unity</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Specializations</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Blockchain</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Cryptography</span>
+                            <span class="tag">Computer Graphics</span>
+                            <span class="tag">Full-Stack Dev</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Chinese (Native)</span>
+                            <span class="tag">English (Proficient)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section contact">
+                <h2>Let's Connect</h2>
+                <p style="margin-bottom: 25px;">I'm always interested in discussing new opportunities, blockchain projects, and innovative software solutions.</p>
+                <div class="contact-links">
+                    <a href="mailto:yl9314@nyu.edu" class="contact-btn">Email Me</a>
+                    <a href="https://www.linkedin.com/in/yitan-li-469665339/" class="contact-btn">LinkedIn</a>
+                    <a href="https://github.com/KevinLYT" class="contact-btn">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Projects Page -->
+        <div id="experience" class="page">
+            <div class="section">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Information Department Intern</div>
+                            <div class="company">Guotai Junan Securities Asset Management</div>
+                            <div class="location">Shanghai, China</div>
+                        </div>
+                        <div class="duration">May 2023 - August 2023</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Conducted thorough internal network, frontend testing and provided detailed feedback, identifying and resolving system vulnerabilities.</li>
+                        <li>Participated in the business program developing a model for calculating the financial status.</li>
+                        <li>Produced concise and insightful research reports, distilling complex financial data into digestible insights.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Database Management Intern</div>
+                            <div class="company">Shanghai Dita Technology</div>
+                            <div class="location">Shanghai, China</div>
+                        </div>
+                        <div class="duration">May 2022 - August 2022</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Used MySQL and Java programming to lead to a comprehensive reworking of database management practices.</li>
+                        <li>Leveraged databases to process and retrieve targeted company data, optimizing search efficiency and enhancing data handling precision for project needs.</li>
+                        <li>Designed graph database schema for core company data, improving relationship mapping and data retrieval efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Key Projects</h2>
+                
+                <div class="project-item">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Exploring Function Inversion: From Fiat-Naor Algorithm to Rainbow Tables (DURF)</div>
+                            <div class="project-link">Research Project</div>
+                        </div>
+                        <div class="duration">June 2024 - October 2024</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Conducted an in-depth analysis of the Fiat and Naor algorithm variant, focusing on the paper "Beating Brute Force for Compression Problems", introducing a k-regular constraint to the function f and demonstrating that the worst-case circuit size for inverting f could be reduced to 2³ⁿ/⁴ poly(s(n)).</li>
+                        <li>Implemented code to invert subset sum hashes using Rainbow Tables based on the open-sourced RainbowCrack-NG library, achieving an average accuracy of 99.5%, higher than the results from MD5, but also with longer generating and cracking time, which aligned with theoretical expectations.</li>
+                    </ul>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Decentralized Messaging App Development</div>
+                            <div class="project-link"><a href="https://dapp.yitanlee.com" target="_blank">🔗 View the website</a></div>
+                        </div>
+                        <div class="duration">September 2024 - January 2025</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Built a decentralized messaging DApp with a Next.js frontend and deployed it on Vercel, enabling wallet-based login via browser extension.</li>
+                        <li>Developed and deployed smart contracts on Polygon blockchain, allowing users to send encrypted messages between wallet addresses.</li>
+                        <li>Collaborated in a two-person team, improving user onboarding flow and reducing transaction failures during testing.</li>
+                    </ul>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Computer Graphics Interactive Teaching Website</div>
+                            <div class="project-link"><a href="https://wp.nyu.edu/courantinstituteofmathematicalsciences-learningcg/" target="_blank">🔗 View the website</a></div>
+                        </div>
+                        <div class="duration">December 2023 - March 2024</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Developed an interactive website for computer graphics education, containing all the concepts in syllabus where users can easily get access to and interact with the scenes themselves, enhancing classroom learning experiences with engaging visual content.</li>
+                        <li>Produced interactive scenes involving multiple light sources and normal mapping, providing the tool for students to operate themselves on these two topics, resulting in heightened student engagement and comprehension.</li>
+                    </ul>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Full Stack Simulation Airline Website</div>
+                            <div class="project-link">Course Project</div>
+                        </div>
+                        <div class="duration">March 2023 - May 2023</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Designed and developed a simulation airline website as part of a course project, integrating front-end and back-end technologies for a seamless user experience.</li>
+                        <li>Led front-end CSS development, contributed to back-end development, and conducted thorough data testing, ensuring the functionality and reliability of the website.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Competition and Awards</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">LEGO Game Jam - Outstanding Design Award</div>
+                            <div class="company">Game Design Competition</div>
+                        </div>
+                        <div class="duration">April 2023</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Participated in a 48-hour game jam to create a game based on a given theme.</li>
+                        <li>Served as the lead game designer, managing task allocation, designing gaming scenes, dialogue, gameplay, and overseeing post-production aspects, resulting in a cohesive and polished game.</li>
+                        <li>Won the Outstanding Design Award for the game, validating the team's innovative approach and execution.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 YiTan (Kevin) Li. Built with passion for technology and innovation.</p>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Remove active from all nav buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Add active to clicked nav button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template · Minimal Grid</title>
+  <style>
+    :root {
+      --bg: #f6f6f6;
+      --card: #ffffff;
+      --text: #141414;
+      --muted: #6d6d6d;
+      --border: #e1e1e1;
+      --accent: #0f172a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      padding: 60px 20px 80px;
+    }
+
+    .shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 32px;
+    }
+
+    aside {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      position: sticky;
+      top: 40px;
+      height: fit-content;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.07);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 18px 55px rgba(15, 23, 42, 0.05);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 70px rgba(15, 23, 42, 0.09);
+    }
+
+    h1 { font-size: 2.4rem; margin-bottom: 0.6rem; }
+    h2 { font-size: 1.3rem; letter-spacing: 0.05em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.6rem; }
+    .muted { color: var(--muted); }
+
+    .stack { display: flex; flex-direction: column; gap: 0.7rem; }
+
+    ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; color: var(--muted); }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 960px) {
+      .shell { grid-template-columns: 1fr; }
+      aside { position: relative; top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <p class="muted">TEMPLATE</p>
+      <h1>Your Name</h1>
+      <div class="stack">
+        <p>Short bio goes here. Keep it to 2-3 sentences for a crisp intro.</p>
+        <div class="tag-row">
+          <span class="tag">Role</span>
+          <span class="tag">Location</span>
+          <span class="tag">Status</span>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <section class="card">
+        <h2>Focus Areas</h2>
+        <ul>
+          <li>• Placeholder bullet one for summary text.</li>
+          <li>• Placeholder bullet two for summary text.</li>
+          <li>• Placeholder bullet three for summary text.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Selected Projects</h2>
+        <div class="stack">
+          <div>
+            <strong>Project Title</strong>
+            <p class="muted">Short sentence describing what it is.</p>
+          </div>
+          <div>
+            <strong>Another Project</strong>
+            <p class="muted">One-liner description to keep it tidy.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Experience Timeline</h2>
+        <div class="stack">
+          <div>
+            <strong>Role · Company</strong>
+            <p class="muted">2023 — Present</p>
+          </div>
+          <div>
+            <strong>Role · Company</strong>
+            <p class="muted">2021 — 2023</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
